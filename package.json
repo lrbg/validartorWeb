@@ -1,26 +1,21 @@
 {
   "name": "validations-attributes-web",
-  "version": "1.0.0",
-  "description": "Web attribute validator - validates HTML element attributes across web pages",
+  "version": "2.0.0",
+  "description": "Web attribute validator — validates HTML element attributes across pages. Runs fully client-side on GitHub Pages.",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "~/.nvm/versions/node/v20.18.3/bin/node server.js",
-    "client": "~/.nvm/versions/node/v20.18.3/bin/node node_modules/.bin/vite --port 5173",
-    "build": "~/.nvm/versions/node/v20.18.3/bin/node node_modules/.bin/vite build",
-    "preview": "~/.nvm/versions/node/v20.18.3/bin/node node_modules/.bin/vite preview"
+    "dev": "vite --port 5173",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.6.7",
-    "cheerio": "^1.0.0",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "uuid": "^9.0.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
-    "concurrently": "^8.2.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "vite": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
