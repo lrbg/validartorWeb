@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { api } from '../utils/api.js';
 import ResultsTable from './ResultsTable.jsx';
 
@@ -29,7 +29,7 @@ const ATTRIBUTE_OPTIONS = [
 const DEFAULT_ELEMENTS   = ['input', 'button', 'select', 'textarea'];
 const DEFAULT_ATTRIBUTES = ['id', 'name'];
 
-export default function ValidatorPanel({ onReportSaved }) {
+export default function ValidatorPanel({ onReportSaved, injectedData, onInjectedClear }) {
   const [url, setUrl]             = useState('');
   const [pageName, setPageName]   = useState('');
   const [elements, setElements]   = useState(DEFAULT_ELEMENTS);
@@ -40,6 +40,24 @@ export default function ValidatorPanel({ onReportSaved }) {
   const [saving, setSaving]       = useState(false);
   const [saved, setSaved]         = useState(false);
   const [filter, setFilter]       = useState('all'); // all | issues | ok
+
+  // Load injected bookmarklet data when it arrives
+  useEffect(() => {
+    if (!injectedData) return;
+    setResult({
+      success: true,
+      url:        injectedData.url,
+      pageName:   injectedData.pageName,
+      elements:   injectedData.elements,
+      summary:    injectedData.summary,
+    });
+    setAttributes(injectedData.checkAttributes || DEFAULT_ATTRIBUTES);
+    setElements(injectedData.elementTypes   || DEFAULT_ELEMENTS);
+    setUrl(injectedData.url);
+    setPageName(injectedData.pageName);
+    setSaved(false);
+    setFilter('all');
+  }, [injectedData]);
 
   function toggle(list, setList, value) {
     setList(prev =>
@@ -161,6 +179,14 @@ export default function ValidatorPanel({ onReportSaved }) {
           </button>
         </div>
       </form>
+
+      {/* ── Bookmarklet injection banner ──────────────────── */}
+      {injectedData && result && (
+        <div className="alert alert-inject">
+          <span>🔖 <strong>Datos recibidos desde bookmarklet</strong> — página autenticada: <code>{injectedData.url}</code></span>
+          <button className="btn-dismiss" onClick={onInjectedClear} title="Limpiar">✕</button>
+        </div>
+      )}
 
       {/* ── Error ─────────────────────────────────────────── */}
       {error && (

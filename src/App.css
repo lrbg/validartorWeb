@@ -71,6 +71,13 @@ code { font-family: 'SF Mono', Menlo, Consolas, 'Courier New', monospace; font-s
 }
 .tab-btn:hover  { background: rgba(255,255,255,.15); color: #fff; }
 .tab-btn.active { background: rgba(255,255,255,.2); color: #fff; }
+.tab-badge {
+  background: #fbbf24; color: #1c1917;
+  font-size: .6rem; font-weight: 800;
+  padding: 1px 5px; border-radius: 8px;
+  margin-left: 4px; vertical-align: middle;
+  text-transform: uppercase; letter-spacing: .03em;
+}
 
 .app-main { flex: 1; padding: 24px; max-width: 1400px; margin: 0 auto; width: 100%; }
 
@@ -157,7 +164,14 @@ code { font-family: 'SF Mono', Menlo, Consolas, 'Courier New', monospace; font-s
 
 /* ── Alert ─────────────────────────────────────────────────────────────────── */
 .alert { padding: 12px 16px; border-radius: var(--radius); font-size: .88rem; margin-top: 16px; }
-.alert-error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+.alert-error  { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+.alert-inject {
+  background: #f0fdf4; border: 1px solid #86efac; color: #166534;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.alert-inject code { background: #dcfce7; padding: 1px 6px; border-radius: 4px; font-size: .78rem; word-break: break-all; }
+.btn-dismiss  { background: none; border: none; color: #166534; font-size: .9rem; cursor: pointer; opacity: .7; }
+.btn-dismiss:hover { opacity: 1; }
 
 /* ── Summary bar ───────────────────────────────────────────────────────────── */
 .results-section { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
@@ -456,3 +470,71 @@ code { font-family: 'SF Mono', Menlo, Consolas, 'Courier New', monospace; font-s
 .iss-pill    { padding: 2px 10px; border-radius: 10px; font-size: .78rem; }
 .iss-fixed   { background: #dcfce7; color: #166534; }
 .iss-new     { background: #fee2e2; color: #991b1b; }
+
+/* ── Bookmarklet panel ──────────────────────────────────────────────────────── */
+.bookmarklet-panel { display: flex; flex-direction: column; gap: 20px; }
+
+.how-steps { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.how-step  { display: flex; align-items: flex-start; gap: 12px; font-size: .88rem; color: var(--text-2); }
+.step-num  {
+  background: var(--primary); color: #fff;
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .75rem; font-weight: 800; flex-shrink: 0;
+}
+
+.drag-area {
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px;
+  background: #f8fafc;
+  border: 2px dashed var(--border-2);
+  border-radius: var(--radius-lg);
+  margin: 12px 0;
+}
+.drag-instruction { font-size: .9rem; color: var(--text-2); margin-bottom: 0; }
+
+.bookmarklet-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--primary);
+  color: #fff !important;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: .95rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  cursor: grab;
+  white-space: nowrap;
+  transition: background .15s, box-shadow .15s;
+  user-select: none;
+}
+.bookmarklet-btn:hover  { background: var(--primary-h); box-shadow: 0 4px 12px rgba(79,70,229,.4); }
+.bookmarklet-btn:active { cursor: grabbing; }
+
+.btn-copy { background: #f1f5f9; border: 1px solid var(--border-2); color: var(--text-2);
+            padding: 8px 16px; border-radius: var(--radius); font-weight: 600; font-size: .82rem; }
+.btn-copy:hover { border-color: var(--primary); color: var(--primary); }
+
+.bm-code-wrapper { margin-top: 8px; }
+.bm-code-area {
+  width: 100%;
+  background: #1e1e1e; color: #d4d4d4;
+  border: 1px solid #333; border-radius: var(--radius);
+  padding: 10px 12px;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  font-size: .72rem;
+  resize: vertical;
+  outline: none;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.browser-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 4px; }
+.browser-card {
+  background: #f8fafc; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px;
+}
+.bc-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.bc-icon   { font-size: 1.2rem; }
+.bc-steps  { padding-left: 16px; display: flex; flex-direction: column; gap: 4px; }
+.bc-steps li { font-size: .8rem; color: var(--text-2); }
